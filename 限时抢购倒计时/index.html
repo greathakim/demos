@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>限时抢购</title>
+<style>
+.box{
+  width: 1200px;
+  height: 400px;
+  margin: 0 auto;
+  background:url(images/product.jpg)no-repeat;
+  position: relative;
+}
+.time{
+  position: absolute;
+  top: 125px;
+  left: 545px;
+  color: red;
+}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="time">
+  距离结束还剩：<span id="lefttime"></span>
+  </div>
+</div>
+<script>
+window.onload=function (){
+  tick()
+  function add0(n)
+      {
+         if(n<10)
+         {
+             return '0'+n;
+          }
+         else
+          {
+             return ''+n;
+          }
+      }
+  function tick(){
+      var curTime = new Date();
+      var endTime = new Date('2016/11/11,00:00:00');
+      var timeDiff = parseInt((endTime.getTime() - curTime.getTime())/1000);
+      var time = document.getElementById('lefttime');
+      var days = parseInt(timeDiff/(24*60*60));
+      var hours = parseInt(timeDiff/(60*60)%24);
+      var minuts = parseInt(timeDiff/60%60);
+      var seconds = parseInt(timeDiff%60);
+
+      time.innerHTML=add0(days)+'天'+add0(hours)+'小时'+add0(minuts)+'分'+add0(seconds)+'秒';
+      if (timeDiff <= 0) {
+        time.innerHTML='活动已结束'
+      }
+      else{
+      setTimeout(tick,1000);
+      }
+  }
+
+}
+</script>
+</body>
+</html>
