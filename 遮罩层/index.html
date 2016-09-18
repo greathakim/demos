@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>遮罩层</title>
+<link rel="stylesheet" href="reset.css">
+<style>
+#header {
+  min-width: 1349px;
+  height:60px;
+  background-color: #555;
+}
+#login button{
+  color: #fff;
+  display: block;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  opacity: 0.9;
+  background:#B22222;
+  float: right;
+  text-decoration: none;
+  margin-right: 50px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+}
+#main {
+  width:1349px;
+  height: 600px;
+  background:url(img/index_banner01.jpg)-500px top no-repeat;
+}
+#loginBox{
+  position:fixed;
+  left: 50%;
+  margin-left: -335px;
+  top:50%;
+  margin-top: -190px;
+  width:670px;
+  height:380px;
+  background:url(img/loginBg.png) #2A2C2E center center no-repeat;
+  display: none;
+  z-index: 10;
+  }
+#close{
+background:url(img/close.png) no-repeat;
+width:30px;
+height:30px;
+cursor:pointer;
+position:absolute;
+right:5px;
+top:15px;
+}
+#mask{
+  background: rgba(204, 204, 204,0.5);
+  position:absolute;
+  left:0;
+  top:0;
+  display: none;
+}
+</style>
+</head>
+<body>
+<div id="header">
+  <div id="login">
+  <button id="btn">登录</button>
+  </div>
+</div>
+<div id="main">
+  <div id="loginBox">
+    <div id="close"></div>
+  </div>
+</div>
+<div class="bottom">
+    <p><img src="img/01.jpg" alt=""></p>
+</div>
+<div id="mask">
+</div>
+<script>
+window.onload = function(){
+  newbox ()
+}
+function newbox (){
+  var sWidth=document.body.scrollWidth;
+  var sHeight=document.body.scrollHeight;
+  var mask = document.getElementById("mask");
+  var login = document.getElementById("btn");
+  var close = document.getElementById('close');
+
+  login.onclick = function(){
+    var loginBox = document.getElementById('loginBox')
+    loginBox.style.display='block';
+    mask.style.display = 'block';
+    mask.style.height=sHeight+"px";
+    mask.style.width=sWidth+"px";
+  }
+  close.onclick = mask.onclick = function(){
+    loginBox.style.display='none';
+    mask.style.display = 'none';
+  }
+
+}
+</script>
+</body>
+</html>
